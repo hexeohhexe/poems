@@ -1,0 +1,20 @@
+d1 $ n "0*4" # s "house"  # speed 0.9 # lpf 800 # gain 1.1
+
+d2 $ n "11*4" # s "808bd" # speed 1 # squiz 0  # nudge 0.01
+
+d3 $ n "[~ 0]*4" # s "808oh"  # room 0 # dry (range 0.7 0.8 saw) # speed 1.1 # lpf 5500 # lpq 0.3
+
+d4 $ slow 1 $ n "[a3] * 16 " # s "superhammond" # gain 1 # hpf 20 # lpf 1200 # octersub 2 # lpq 0.3 # attack 0.01 # hold 0.03 # release 0.04
+
+d5 $ n "4!16" # s "808oh" # legato 0.25 # lpf (range 5600 7500 sine)
+
+d8 $ fast 2 $ n "b7" # s "superfm" + (up "{20 ~ 20 ~ ~ 20 ~ 19}") # gain 0.7 # release 0.3 # dry 0.3
+
+d7 $ fast 2 $ every 2 rev $ n "1 ~ 1 1 1 ~ 1 1" # s "rm" # hpf 1200 # room 0.0 # hpq 0.2 # gain 0.8 # pan (range 1 (0 - 1) sine)
+
+d12 $ slow 2 $ n "~ ~ ~ 1" # s "hexb" # speed 2 # gain 0.9 # room 0.1
+
+d6  $ slow 2 $ n "19 ~ 19 19 _ ~ 22 ~ 19 19 _ 19 _ ~ 22 ~ " # s "hexm1"  # lpf 1700 # cut 1 # delay 0.1 # room 0 # size 1 # dry 0.9 # gain 0.9 # speed 0.5
+
+d10 $ slow 8 $ n "0" # s "hexz" # nudge (0 - 0.2) # speed 1.1 # room 0.1 # dry 0.3 # panbus 1 (range 1 (0 - 1) sine)
+-- d12 $ fast 1 $ n "21 ~ ~ 19 ~ ~ 19 19" # s "superfm"# gain 0.7 # release 0.3 # room 1 # dry 0.8

@@ -1,0 +1,79 @@
+d12
+   $ someCycles (# room 0.3) $ every 4 ghost $ fast 8 $ degradeBy 0.2
+ $ s "house jungle"
+ # n (irand 20)
+ # gain (range 0.9 0.9 sine)
+
+d12 $ s "house:10*12" # gain 0.8
+
+d2
+  $ slow 4
+  $ n "c3"
+  # s "superhammond"
+
+
+
+d1
+  $ stack [
+  n "0*4" # gain 1.2,
+  n "[~ 9]*4",
+  (# gain (range 0.6 1.1 (slow 3 sine)))
+  $ n "3*8" ]
+  # s "house"
+
+
+d12
+  $ off (1) (+ up (12))
+  $ n "c4"
+  # s "superfm" + up "{7 3 12 0 3 5 2 10 5 10 7 3 2 10 7 3}/2"
+  # legato 0.2
+  # gain 0.6
+  # room 0.5
+  # channel 2
+  # panbus 1 (saw * 5)
+
+d4
+  $ slow 4
+  $ n "c3" + up "<c2 ds2 f2 gs2>"
+  # s "supersaw"
+  # lpf 700
+  # gain 0.8
+
+d5
+
+do $ stack
+resetCycles
+
+d1 $ n "[0!4, [~ 11]*4, [~ 2]]" # s "house"
+
+d9 $ slow 2 $ n "f3'min'7 ~ " # s "superhammond" # gain 0.8 # djf 0.3
+
+d12 $ every 2 rev $ n "c4" + up "0 0 5 8 8 12 ~ ~  6 ~ 0 5 5 5 0 0"
+    # s "superfork" # gain 1.1 # room 1 # dry 0.1 # delay 1.2
+
+d12 $ slow 1 $ n "c4" + up "2 5 7 9 2 5 7 12" # s "superpwm" # release 0.1 # gain 1 # room 0.1 # dry 0.1 # delay 1.2 # lpf 1200
+
+d4 $ slow 0.5 $ s "bass:0 ~"
+
+d5 $ fast 1 $ chop 32 $ s "breaks125 ~" # hpf 1200 # hpq 0.2 # room 2 # gain 0.7
+
+
+d12 $ slow 2 $ every 4 (jux (rev)) $ n "e4 ~ gs4 ~ gs4 f4 ~ f4 ~ g4 ~ ~ g4 ~ ds4 ~" # s "superfm" # gain 0.8  # legato 1 # release 0.2
+
+d1 $ slow 2 $ stack[
+ n "0 ~ ~ ~ 0 ~ ~ ~ 0 ~ ~ ~ 0 ~ ~ ~ 0 ~ ~ ~ 0 ~ ~ ~ 0 ~ 0 ~ 0 ~ ~ ~ " # s "hexa:0",
+ n "~ ~ 7 ~ ~ ~ 7 ~ ~ ~ 7 ~ ~ ~ 7 ~ ~ ~ 7 ~ ~ ~ 7 ~ ~ ~ 7 ~ ~ ~ 7 ~ " # s "jungle" # speed 1 # legato 0.6,
+ n "~ ~ ~ ~ 1 ~ ~ ~ ~ ~ ~ ~ 1 ~ ~ ~ ~ ~ ~ ~ 1 ~ ~ ~ ~ ~ ~ ~ 1 ~ ~ ~ " # s "hexa:1",
+ ghost $ s "hh27:8*32" # speed 1]
+
+d3  $ slow 2 $ n "~ ~ ~ 10" # s "trump" # attack 0.00 # hold 0.1 # release 0.04 # gain 1.2 # djf 0.4
+
+d4  $ slow 1 $ n "4 4 7 7" # s "hexm1"  # attack 0.00 # hold 0.3 # release 0.1 # gain 1.2 # speed 1 # djf 0.3 # room 0.2
+
+d4 $ slow 1 $ n "a3 gs3 fs3 ds3 ~ fs3 ~ ds3 " # s "superreese" # lpf 400 # hpf 70 # legato 0.7 # room 1 # size 0.2 # dry 0.7
+
+d3 $ slow 2 $ s "~ ~ ~ ~ ~ ~ ~ ~ hexb:1 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ hexb:1 ~ hexb:1 ~ ~ ~ ~ ~ " # attack 0.01 # hold 0.1 # release 0.01 # octer 1 # speed 1 # gain 0.6 # room 1 # size 0.2 # dry 0.3
+
+d2 $ slow 2 $ s "~ ~ ~ ~ ~ ~ ~ ~ hexa:0 ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ hexa:0 ~ hexa:0 ~ ~ ~ ~ ~ "
+
+d3  $ slow 1 $ n "14 _ ~ 14 _ ~ 14 _ ~ ~ 7 ~ 7 _ 7 ~" # s "hexm1" # attack 0.01 # hold 0.13 # release 0.04 # gain 1.2 # djf 0.1

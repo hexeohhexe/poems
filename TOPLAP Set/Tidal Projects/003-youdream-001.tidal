@@ -1,0 +1,78 @@
+-- YOU DREAM
+-- BPM 135
+
+-- DRUMS D1
+do
+-- resetCycles
+let d1bd = gain (1) -- KICK
+    d1cp = gain (0) -- CLAP
+    d1sd = gain (1) -- DOWNBEAT
+    d1oh = gain (1) -- OPEN HAT
+    d1hh = gain (1) -- CLOSED HAT
+    d1cy = gain (0) -- CYMBAL
+    d1ht = gain (0) -- HIGH TOM
+    bcount = 2
+d1 $ stack [s "~"
+    -- , slow 1 (s "hexa:0*4") # d1bd
+    , slow 1 (s "hexa:0 ~!6 hexa:0 ~!2 hexa:0 ~!5") # d1bd
+    , slow 1 (s "[~ rm:7]*2") # d1sd
+    , slow 1 (s "[~ cp:1 ~ ~ ~ ~ ~ ~ ht:1 ~ ~ ~ ht:1 ~ ~ ~]") # d1cp
+    , (slow 1 (s"[~ hexa:3]*4")) #d1oh
+    , slow bcount (s "~!7 hh:4" # attack 0.01 # hold 0.2 # release 0.1) #d1cy
+    , slow 1 (s "hexa:4*16") #d1hh #fx01
+    ]
+    # squiz 0
+
+-- ADD DRUMS D2
+d2 $ s "[hexa:0*4, [~ hexa:3]*4, [hexa:4]*16]"
+
+d2 $ stack [
+s "~"
+  -- LOWTOM
+  -- , swingBy (1/32) 4 $ slow 2 $ s "~ ~ ~ lt:4 ~ ~ ~ lt:4 ~ ~ lt:4 ~ ~ lt:4 lt:4 ~"
+    # speed 1.1 # lpfbus 3 (range 500 1200 $ saw) # leslie 1 # gain 0.9 # lpq 0 # room 0.1 # dry 0.8
+  -- SAMPLE
+  -- , s "mouth:02 mouth:03 ~  ~ mouth:06" # gain 0.7
+  ]
+
+-- D3 BASS
+
+do
+resetCycles
+
+d3 $ slow 8 $ n "d2 _ e2 _ a2 _ e2 _" # s "superhammond" # gain 1.0 # hpf 40
+
+-- D4 Chords
+let mel0A01 = "a3'min'ii ~!2 a3'min'ii ~!2 a3'min'ii ~!2 a3'min'ii ~!6"
+    mel0A02 = "d4'min7 ~!2 d4'min7 ~ d4'min7 ~!2 d4'min7 ~!7"
+    mel0A03 = "f4'maj'i ~!2 f4'maj'i ~!2 f4'maj'i ~!2 f4'maj'i ~!6"
+    mel0A04 = "c4'maj ~!2 c4'maj ~ c4'maj ~!2 c4'maj ~!3 c4'maj ~!3"
+
+d12  $ slow 1 $ n (cat [mel0A01, mel0A02, mel0A03, mel0A04])  # s "superhammond"
+    # gain 0.8
+    # velocity 0.7
+    # sustain 0.3
+    # legato 0.2
+    # room 0.4
+    # dry 0.6
+    # lpfbus 1 (range 2900 1300 $ sine)
+
+-- D5 Arp
+d6 $ striate 2 $ fast ((2/3) * 1) $ every 8 rev $ n "g4 c5 d5 a5 ~ ~" # s "superfork" # gain 1.4 # lpf 1200 # legato 1 # room 1 # dry 0.2 # pan (range 1 (0 - 1) $ sine)
+
+
+-- Samples
+d8 $ every 4 (striate 8) $ s "kurt:1" # speed 2 # gain 1 # room 0.3 # dry 0.5
+
+d9 $ slow 2 $ s "~ kurt:3" # speed 2 # gain 1.2 # room 0.4 # dry 0.5 # pan (range 0 (1-0) $ sine)
+
+
+
+
+-- you dream of heaven
+-- this track could go a lot of diff directions
+-- but the main thing is that m1 organ progression thats 2 bars
+-- and there's an accompanying bass i believe
+-- then the you dream of heaven sample from the jungle pack pitched up
+-- don't forget the puppy sounds
+-- the 303 goes up high, variable length almost trancy phrase

@@ -1,0 +1,83 @@
+-- got this one bar m1 organ house loop --
+-- bass line that's really tough to fit in with that loop but
+-- drives an interesting groove if it fits right
+-- timing has to be exact
+--
+
+
+setcps (137/60/4)
+
+resetCycles
+
+do
+
+-- FX
+
+let fx01 =  lpfbus 1 (slow 6 $ range 200 3000 $ tri)
+    fx02 = panbus 2 (slow 6 $ range 1 (0-1) $ saw)
+
+do
+
+
+-- DRUMS
+do
+d1 silence
+d4 silence
+d6 silence
+d12 silence
+let d1bd = gain (1) -- KICK
+    d1cp = gain (1) -- CLAP
+    d1sd = gain (1) -- DOWNBEAT SNARE
+    d1oh = gain (0) -- OPEN HAT
+    d1hh = gain (1) -- CLOSED HAT
+    d1cy = gain (0) -- CYMBAL
+    d1ht = gain (0) -- HIGH TOM
+d1  $ stack [
+    s "~"
+    , s "house:0*4" # d1bd
+    -- , s "[~ jungle:12 ~ ~!2 ~ jungle:12 ~]" # d1cp
+    , s "[~ house:12]*2" # d1cp # squiz 1.0
+    , s "[~ jungle:12]*2" # d1sd
+    , s "[~ hh:7]*4" # d1oh # release 0.1 # fx01 # lpq 0.1
+    , swingBy (1/(range 128 64 $ sine)) 4 $ s "hh:8*16" # d1hh
+    # fast 32 (fx01)
+    , slow 1 $ s "~ ht:4 ht:4 ~ ht:4 ~ ht:4 ~ ht:4 ~ ht:4 ht:4 ht:4 ht:4 ht:4 ~" # d1ht
+    # speed ((sine + 5)/(saw + 2))
+    ]
+  -- # lpfbus 1 200
+
+d2 $ stack [
+    s "~" -- null
+    -- , s "bd ~!2 bd ~!4" # gain 1
+    -- , s "[~ rm:2]*2" # gain 0.8 # room 0.2 # size 0.2 # dry 0.5
+    , fast 4  $ ghost $ s "~ hh:8" # att 0.01 # hold 0.09 # release 0.03 # gain 1.3
+]
+
+--BASS
+d3  $ slow 1 $ n "14 _ ~ 14 _ ~ 14 _ ~ ~ 7 ~ 7 _ 7 ~" # s "hexm1" # attack 0.01 # hold 0.13 # release 0.04 # gain 1.0 # djf 0.2
+
+d4 $ stack [
+    s "~"
+    -- , slow 2 $ n "d3@3 g2" # s "superhammond"  # fx01 # gain 0.9
+    , slow 1 $ n "d3 _ ~ d3 _ ~ d3 _ ~ ~ g2 ~ g2 g2 _ ~" # s "superhammond" # att 0.01 # hold 0.09 # legato 1 # rel 0.01 # gain 1 # leslie 1 # hpf 90
+]
+
+--D4 Melody Supervibe
+d4 $ slow 4 $ n "d3 ~ d3 d3 d3 d3 ~ d3 ~ ~ as3 ~ ~ a3 ~ ~ d3 ~ d3 d3 d3 d3 ~ d3 ~ ~ as3 ~ ~ g3 ~ c3 " # s "superfork" # attack 0.02 # hold 0.1 # release 0.09 # gain 1.2 # room 0.3 # dry 0.1
+
+-- D5 Piano Chords
+do
+resetCycles
+
+d7 $ slow 2 $ n "f4'maj7'i _ _ f4'maj7'i d4'min7'i d4'min7'i _ _ " # s "superpiano" # velocity 0.7 # dry 0.5 # gain 1 # djf 0.2
+
+d7 $ slow 2 $ n "e3'min7'iii _ _ e3'min7'iii a2'min7'iiii a2'min7'iiii _ _ " # s "superpiano" # velocity 0.7 # room 0.1 # dry 0.5 # gain 1 # djf 0.2
+
+-- D7 Melody SuperFM
+d12 $ slow 2 $ n "g5 ~!7 a5 ~!3 c6 a5 ~!2" # s "superfm" # lpf 3200 # squiz 0.2 # delay 0.3  # room 1 # dry 0.2 # gain 0.7
+
+d12 $ slow 2 $ n "e5 f5 g5 f5" # s "superfm" # lpf 3200 # squiz 0.2 # room 1 # dry 0.2 # gain 0.7
+
+d7 $ slow 4 $ n "g5 ~!15 d5 ~!15" # s "superfm" # lpf 3200 # squiz 0.2 # room 1 # dry 0.2 # gain 0.6
+
+d6 $ slow 2 $ n "c6 ~!4 c6 ~ ~" # s "superfm" # lpf 3200 # squiz 0.2 # room 1 # dry 0.2 # gain 0.65

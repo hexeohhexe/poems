@@ -1,0 +1,29 @@
+
+
+do
+setcps (135/60/4)
+resetCycles
+d1 $ every 4 (ghost) $ n "[~ 0]*4"  # s "hh" # legato 0.25 # lpf (range 5600 7500 sine) # gain 1
+d2 $ every 16 (mask "0") $ n "0*4" # s "house" # gain 1.0
+d3 $ n "[~!4 ~ ~ 2 ~ ~!4 ~!4]/4" # s "jungle" # room 0.3 # delay 0.1 # dry 0.2
+d4 $ n "[~!4 1 ~ ~ ~ ~!4 ~!4 ~!48]/16" # s "jungle"
+
+do
+
+d5 $ ghost $ n "[5 5 5 5 5 5 ~ 5 5 5 5 5 5 5 5 ~]/2" # s "monsterb" # speed "0.5 0.3 0.4 0.6 0.6 0.6 0.4" # legato 0.2 # gain 0.4 # squiz 2  # leslie 1 # lpf 500 # lpq 0.5 # room 0.8 # dry 0.1 # pan (range (0-1) 0 saw/8) # djf 0.3
+
+d6 $ n "[~!16 ~!16 ~!16 ~ 1 ~ ~ ~!4 ~!8]/16" # s "mash2" # speed 0.7 # lpf 600
+
+d5 $ slow 2 $ note "d4'minor7'ii ~ ~ ~ d4'minor7'ii ~ ~ ~ d4'minor7'ii ~ ~ d4'minor7'ii ~ ~ c4'maj7'ii ~ d4'minor7'ii ~ ~ ~ d4'minor7'ii ~ ~ ~ d4'minor7'ii ~ ~ d4'minor7'ii ~ ~ ~ ~ " # s "superpiano" # gain 0.8 # djf (range 0.2 0.4 tri) # attack 0.00 # hold 0.04 # release 0.04 # panbus 1 (range 1 (0 - 1) saw/2) # room 0.2 # dry 0.1
+
+
+d8 $ qtrigger $ slow 8 $ n "12!64 ~!64" # s "jungle" # gain (range 0.7 0.9 saw*2) # lpf (range 1300 5700 saw*2)
+
+d9 $ n "~!4 3 ~ ~ ~ ~ 3 ~ ~ 3 ~ ~ ~ " # s "jungle"
+
+d7 $ slow 2 $ n "c3 d3 f3 _ _ f3 _ _ c3 d3 d3 d3 c3 d3 d3 d3" # s "superhammond" # gain 0.9 # lpf 250 # lpq 0.4 # djf 0.2 # attack 0.01 # release 0.4
+
+d11 $ ghost $ slow 2 $ n "g6!13 c6 c6 c6" # s "superfork" # gain 1 # squiz 1 # lpf 1250 # lpq 0.1 # djf 0.7 # room 0.4 # dry 0.1
+
+
+d12 $ qtrigger $ slow 8 $ n "0" # s "hexz" # nudge (0 - 0.2) # speed 1.2 # room 0.1 # dry 0.3 # panbus 1 (range 1 (0 - 1) sine)
